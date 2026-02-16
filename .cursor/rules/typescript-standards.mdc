@@ -1,0 +1,38 @@
+---
+description: TypeScript/JavaScript coding standards
+globs: "**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# TypeScript & JavaScript Standards
+
+When working with TypeScript or JavaScript in this project:
+
+## General
+
+- Prefer `const` over `let`; avoid `var`
+- Use explicit types for function parameters and return values where helpful
+- Prefer async/await over raw Promises
+
+## Error Handling
+
+```typescript
+// BAD
+try {
+  await fetchData();
+} catch (e) {}
+
+// GOOD
+try {
+  await fetchData();
+} catch (e) {
+  logger.error("Failed to fetch", { error: e });
+  throw new DataFetchError("Unable to retrieve data", { cause: e });
+}
+```
+
+## Imports
+
+- Use named exports when possible
+- Group imports: external libs first, then internal modules
+- Avoid circular dependencies
