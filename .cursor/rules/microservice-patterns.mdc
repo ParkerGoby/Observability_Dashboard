@@ -1,0 +1,27 @@
+---
+description: Microservice architecture and patterns
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# Microservice Patterns
+
+When working with microservices in this project:
+
+## Service Boundaries
+
+- Each service should be independently deployable
+- Prefer HTTP/REST or message queues for inter-service communication
+- Avoid shared databases between services; use APIs or events
+
+## Configuration
+
+- Load config from environment variables
+- Use `.env.example` as a template; never commit `.env`
+- Validate config at startup (fail fast if required vars are missing)
+
+## API Design
+
+- Use consistent URL patterns: `/api/v1/resource`
+- Return appropriate HTTP status codes
+- Include error payloads with clear messages and optional codes

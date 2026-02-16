@@ -1,0 +1,43 @@
+---
+description: Core project standards and conventions
+alwaysApply: true
+---
+
+# Project Standards
+
+## General Guidelines
+
+- **Read AGENTS.md first** — It contains vendor-neutral instructions for all AI tools
+- **Consistency** — Match existing patterns in the file you're editing
+- **Incremental changes** — Prefer small, focused edits over large refactors unless requested
+
+## Before Committing
+
+- Run the project's test suite
+- Ensure no secrets or credentials are in the diff
+- Verify lint/format passes
+
+## Error Handling
+
+Handle errors explicitly; avoid silent failures:
+
+```python
+# BAD
+try:
+    result = fetch_data()
+except:
+    pass
+
+# GOOD
+try:
+    result = fetch_data()
+except FetchError as e:
+    logger.error("Failed to fetch", extra={"error": str(e)})
+    raise
+```
+
+## Documentation
+
+- Add docstrings to public functions and classes
+- Update README when adding new services or changing setup
+- Comment non-obvious logic; avoid commenting the obvious
